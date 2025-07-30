@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use("/api/auth", AuthRouter);
+app.use("/api/sertificates", require("./routes/sertificate.route"));
 
 // MongoDB ulanish
 mongoose.connect(process.env.MONGO_URI, {
