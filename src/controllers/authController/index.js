@@ -3,10 +3,12 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/auth/AdminModal.js");
 
 exports.login = async (req, res) => {
+  console.log("Login request received:", req.body);
+  
   try {
+
     const { username, password } = req.body;
 
-    // Foydalanuvchi borligini tekshirish
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: "Foydalanuvchi topilmadi" });
@@ -31,6 +33,7 @@ exports.login = async (req, res) => {
       user: { id: user._id, username: user.username, role: user.role }
     });
   } catch (error) {
-    res.status(500).json({ message: "Server xatosi", error });
+  console.error("Login error:", error); // Konsolda xatoni to‘liq chiqaradi
+  res.status(500).json({ message: "Server xatosi", error: error.message });
   }
 };
