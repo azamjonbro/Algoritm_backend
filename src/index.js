@@ -3,9 +3,13 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const createDefaultAdmin = require("./config/defaultAdmin");
 const AuthRouter = require("./routes/auth.route");
-
+const cors = require("cors");
 dotenv.config();
 const app = express();
+
+app.use(cors({
+  origin: "*",
+}));
 app.use(express.json());
 app.use("/api/auth", AuthRouter);
 app.use("/api/sertificates", require("./routes/sertificate.route"));
@@ -25,6 +29,8 @@ mongoose.connect(process.env.MONGO_URI, {
 app.get("/", (req, res) => {
   res.send("Server ishlayapti 🚀");
 });
+
+
 
 
 const PORT = process.env.PORT || 5000;
