@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "*",
+  origin: ["https://algoritmedu.uz", "http://localhost:3000", "*"], // CORS uchun
 }));
 app.use(express.json());
 app.use("/api/auth", AuthRouter);
