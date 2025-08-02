@@ -27,7 +27,8 @@ exports.login = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.json({
+    res.status(200).json({
+      
       message: "Muvaffaqiyatli tizimga kirdingiz",
       token,
       user: { id: user._id, username: user.username, role: user.role }
