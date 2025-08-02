@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/', authMiddleware, sertificateController.createSertificate);
 
 // Read all
-router.get('/', authMiddleware, sertificateController.getAllSertificates);
+router.get('/', sertificateController.getAllSertificates);
 
 // Read one
 router.get('/:id', authMiddleware, sertificateController.getSertificateById);
