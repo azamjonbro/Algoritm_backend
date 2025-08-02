@@ -7,10 +7,7 @@ const cors = require("cors");
 dotenv.config();
 const app = express();
 
-app.use(cors({
-  origin: ["https://algoritmedu.uz", "http://localhost:3000"], // CORS uchun
-  credentials: true
-}));
+app.use(cors()); 
 app.use(express.json());
 app.use("/api/auth", AuthRouter);
 app.use("/api/sertificates", require("./routes/sertificate.route"));
