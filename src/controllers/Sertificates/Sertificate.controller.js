@@ -28,6 +28,8 @@ exports.getSertificateById = async (req, res) => {
   if (!sertificate) {
    return res.status(404).json({ error: 'Sertificate not found' });
   }
+ 
+  
   res.json(sertificate);
  } catch (err) {
   res.status(500).json({ error: err.message });

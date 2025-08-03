@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/auth.middleware');
 const router = express.Router();
 
 // Create
-router.post('/', authMiddleware, sertificateController.createSertificate);
+router.post('/',  sertificateController.createSertificate);
 
 // Read all
 router.get('/', sertificateController.getAllSertificates);
