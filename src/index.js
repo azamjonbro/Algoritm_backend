@@ -4,14 +4,18 @@ const dotenv = require("dotenv");
 const createDefaultAdmin = require("./config/defaultAdmin");
 const AuthRouter = require("./routes/auth.route");
 const cors = require("cors");
+const path = require("path");
 dotenv.config();
 const app = express();
 
 app.use(cors()); 
 app.use(express.json());
+const uploadsAbsPath = path.resolve(process.cwd(), 'src', 'uploads');
+app.use('/uploads', express.static(uploadsAbsPath));
 app.use("/api/auth", AuthRouter);
 app.use("/api/sertificates", require("./routes/sertificate.route"));
-
+app.use("/api/opinions", require("./routes/opinion.route"));
+app.use("/api", require("./routes/video.route"));
 // MongoDB ulanish
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
