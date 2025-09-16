@@ -13,9 +13,9 @@ router.get('/', sertificateController.getAllSertificates);
 router.get('/:id', authMiddleware, sertificateController.getSertificateById);
 
 // Update
-router.put('/:id', authMiddleware, sertificateController.updateSertificate);
+router.put('/:id', sertificateController.updateSertificate);
 
 // Delete
-router.delete('/:id', authMiddleware, sertificateController.deleteSertificate);
+router.delete('/:id', sertificateController.deleteSertificate);
 
 module.exports = router;
