@@ -10,12 +10,12 @@ router.post('/',  sertificateController.createSertificate);
 router.get('/', sertificateController.getAllSertificates);
 
 // Read one
-router.get('/:id', authMiddleware, sertificateController.getSertificateById);
+router.get('/:id',  sertificateController.getSertificateById);
 
 // Update
 router.put('/:id', sertificateController.updateSertificate);
 
 // Delete
-router.delete('/:id',authMiddleware, sertificateController.deleteSertificate);
+router.delete('/:id', sertificateController.deleteSertificate);
 
 module.exports = router;
