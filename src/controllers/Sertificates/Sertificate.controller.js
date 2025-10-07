@@ -54,8 +54,13 @@ exports.updateSertificate = async (req, res) => {
 };
 
 // Delete a sertificate by ID
+const mongoose = require('mongoose');
+
 exports.deleteSertificate = async (req, res) => {
  try {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+   return res.status(400).json({ error: 'Invalid ID format' });
+  }
   const sertificate = await Sertificate.findByIdAndDelete(req.params.id);
   if (!sertificate) {
    return res.status(404).json({ error: 'Sertificate not found' });
