@@ -15,7 +15,7 @@ app.use('/uploads', express.static(uploadsAbsPath));
 app.use("/api/auth", AuthRouter);
 app.use("/api/sertificates", require("./routes/sertificate.route"));
 app.use("/api/opinions", require("./routes/opinion.route"));
-app.use("/api", require("./routes/video.route"));
+app.use("/api/", require("./routes/video.route"));
 // MongoDB ulanish
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
