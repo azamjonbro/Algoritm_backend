@@ -38,7 +38,7 @@ exports.createVideoOpinion = async (req, res) => {
 
 exports.getVideoOpinions = async (req, res) => {
   try {
-    const videoOpinions = await videoOpinionModel.find();
+    const videoOpinions = await videoOpinionModel.find().lean();
     return res.status(200).json(videoOpinions);
   } catch (error) {
     console.error("Error fetching video opinions:", error);
