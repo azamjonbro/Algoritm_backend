@@ -1,9 +1,43 @@
 const path = require('path');
 const videoOpinionModel = require('../../models/video_opinions/video.model');
 
+// exports.createVideoOpinion = async (req, res) => {
+//   try {
+//     const { title, direction } = req.body;
+
+//     if (!title || !direction) {
+//       return res.status(400).json({ message: "title va direction majburiy" });
+//     }
+//     if (!req.file) {
+//       return res.status(400).json({ message: "video fayl majburiy (form-data: video)" });
+//     }
+//     const { filename, path: filePath } = req.file;
+
+//     const relativePath = path.posix.join('/uploads', filename); // serverdan static bo'lib ochiladi
+//     const publicUrl = `${req.protocol}://${req.get('host')}${relativePath}`;
+
+//     const newVideoOpinion = new videoOpinionModel({
+//       title,
+//       direction,
+//       videoPath: relativePath,
+//       videoUrl: publicUrl,
+//     });
+
+//     await newVideoOpinion.save();
+
+//     return res.status(201).json({
+//       message: "Video opinion yaratildi",
+//       videoOpinion: newVideoOpinion,
+//     });
+//   } catch (error) {
+//     console.error("Error creating video opinion:", error);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// };
+
 exports.createVideoOpinion = async (req, res) => {
   try {
-    const { title, direction } = req.body;
+    const { title, direction, telegramPostId, InstagramPostId, DateNews, likes, PosterImagePath } = req.body;
 
     if (!title || !direction) {
       return res.status(400).json({ message: "title va direction majburiy" });
@@ -13,7 +47,7 @@ exports.createVideoOpinion = async (req, res) => {
     }
     const { filename, path: filePath } = req.file;
 
-    const relativePath = path.posix.join('/uploads', filename); // serverdan static bo'lib ochiladi
+    const relativePath = path.posix.join('/uploadImages', filename);
     const publicUrl = `${req.protocol}://${req.get('host')}${relativePath}`;
 
     const newVideoOpinion = new videoOpinionModel({
@@ -21,6 +55,11 @@ exports.createVideoOpinion = async (req, res) => {
       direction,
       videoPath: relativePath,
       videoUrl: publicUrl,
+      telegramPostId,
+      InstagramPostId,
+      DateNews,
+      likes,
+      PosterImagePath,
     });
 
     await newVideoOpinion.save();
@@ -34,8 +73,6 @@ exports.createVideoOpinion = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-
-
 exports.getVideoOpinions = async (req, res) => {
   try {
     const videoOpinions = await videoOpinionModel.find().lean();
