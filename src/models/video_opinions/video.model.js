@@ -11,6 +11,7 @@ const videoOpinionSchema = new Schema(
     DateNews: { type: Date, default: Date.now },
     likes: { type: Number, default: 0 },
     PosterImagePath: { type: String }, // video uchun poster image yo'li
+    PosterImageUrl: { type: String }, // video uchun poster image to'liq URL
   },
   { timestamps: true }
 );

@@ -37,7 +37,7 @@ const videoOpinionModel = require('../../models/video_opinions/video.model');
 
 exports.createVideoOpinion = async (req, res) => {
   try {
-    const { title, direction, telegramPostId, InstagramPostId, DateNews, likes, PosterImagePath } = req.body;
+    const { title, direction, telegramPostId, InstagramPostId, DateNews, likes, PosterImagePath, PosterImageUrl } = req.body;
 
     if (!title || !direction) {
       return res.status(400).json({ message: "title va direction majburiy" });
@@ -60,6 +60,7 @@ exports.createVideoOpinion = async (req, res) => {
       DateNews,
       likes,
       PosterImagePath,
+      PosterImageUrl,
     });
 
     await newVideoOpinion.save();
@@ -100,7 +101,7 @@ exports.getVideoOpinionById = async (req, res) => {
 exports.updateVideoOpinion = async (req, res) => {
   try {
     const videoOpinionId = req.params.id;
-    const { title, direction } = req.body;
+    const { title, direction, telegramPostId, InstagramPostId, DateNews, likes, PosterImagePath, PosterImageUrl } = req.body;
 
     if (!title || !direction) {
       return res.status(400).json({ message: "title va direction majburiy" });
@@ -108,7 +109,7 @@ exports.updateVideoOpinion = async (req, res) => {
 
     const updatedVideoOpinion = await videoOpinionModel.findByIdAndUpdate(
       videoOpinionId,
-      { title, direction },
+      { title, direction, telegramPostId, InstagramPostId, DateNews, likes, PosterImagePath, PosterImageUrl },
       { new: true }
     );
 
