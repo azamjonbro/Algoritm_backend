@@ -20,8 +20,6 @@ const imageExt = new Set(['.jpg','.jpeg','.png','.webp']);
 const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();
   const mime = (file.mimetype || '').toLowerCase();
-
-  // NOTE: field nomlari router/controller bilan mos bo'lishi kerak:
   if (file.fieldname === 'video') {
     if (mime.startsWith('video/') || (mime === 'application/octet-stream' && videoExt.has(ext))) {
       return cb(null, true);
@@ -35,8 +33,6 @@ const fileFilter = (req, file, cb) => {
     }
     return cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE', 'poster'));
   }
-
-  // boshqa fieldlarni qabul qilmaymiz
   return cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE', file.fieldname));
 };
 
@@ -44,7 +40,7 @@ const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 1 * 1024 * 1024 * 1024 // 1 GB
+    fileSize: 1 * 1024 * 1024 * 1024
   }
 });
 
