@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // Statik fayllar
-const uploadsPath = path.join(__dirname, "src", "uploads");
+const uploadsPath = path.join(__dirname, "uploads"); // ❗ src o‘chirildi
 app.use("/uploads", express.static(uploadsPath));
 
 // Routerlar
