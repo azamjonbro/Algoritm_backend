@@ -39,5 +39,11 @@ const fileFilter = (req, file, cb) => {
   return cb(new Error('Noto‘g‘ri fayl maydoni'));
 };
 
-module.exports = multer({ storage, fileFilter, limits: { fileSize: 5 * 1024 * 1024 * 1024 } });
+module.exports = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 1 * 1024 * 1024 * 1024 // 1 GB
+  }
+});
 
