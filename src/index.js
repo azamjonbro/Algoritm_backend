@@ -9,15 +9,12 @@ const path = require("path");
 dotenv.config();
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Statik fayllar
-const uploadsPath = path.join(__dirname, "uploads"); // ❗ src o‘chirildi
-app.use("/uploads", express.static(uploadsPath));
+const uploadsPath = path.join(__dirname, "uploads")
+app.use("/uploads", express.static(uploadsPath)); 
 
-// Routerlar
 app.use("/api/auth", AuthRouter);
 app.use("/api/sertificates", require("./routes/sertificate.route"));
 app.use("/api/opinions", require("./routes/opinion.route"));

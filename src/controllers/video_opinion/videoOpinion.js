@@ -22,8 +22,8 @@ exports.createVideoOpinion = async (req, res) => {
       likes,
     } = req.body;
 
-    const videoRelativePath = path.posix.join("/uploadImages", videoFile.filename);
-    const posterRelativePath = path.posix.join("/uploadImages", posterFile.filename);
+    const videoRelativePath = path.posix.join("/uploads", videoFile.filename);
+    const posterRelativePath = path.posix.join("/uploads", posterFile.filename);
 
     const videoUrl = `${req.protocol}://${req.get("host")}${videoRelativePath}`;
     const posterUrl = `${req.protocol}://${req.get("host")}${posterRelativePath}`;
