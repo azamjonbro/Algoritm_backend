@@ -5,18 +5,23 @@ const createDefaultAdmin = require("./config/defaultAdmin");
 const AuthRouter = require("./routes/auth.route");
 const cors = require("cors");
 const path = require("path");
+
 dotenv.config();
 const app = express();
 
-app.use(cors()); 
+// Middlewares
+app.use(cors());
 app.use(express.json());
-const uploadsAbsPath = path.resolve(process.cwd(), 'src', 'uploads');
-app.use('/uploads', express.static(uploadsAbsPath));
+
+// Statik fayllar
+const uploadsPath = path.join(__dirname, "src", "uploads");
+app.use("/uploads", express.static(uploadsPath));
+
+// Routerlar
 app.use("/api/auth", AuthRouter);
 app.use("/api/sertificates", require("./routes/sertificate.route"));
 app.use("/api/opinions", require("./routes/opinion.route"));
-app.use("/api/", require("./routes/video.route"));
-app.use("/api/videos", require("./routes/video.route") )
+app.use("/api/videos", require("./routes/video.route"));
 
 // MongoDB ulanish
 mongoose.connect(process.env.MONGO_URI, {
@@ -25,7 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .then(async () => {
   console.log("✅ MongoDB ulandi");
-  await createDefaultAdmin(); 
+  await createDefaultAdmin();
 })
 .catch(err => console.error("❌ MongoDB ulanish xatosi:", err));
 
@@ -34,8 +39,6 @@ app.get("/", (req, res) => {
   res.send("Server ishlayapti 🚀");
 });
 
-
-
-
+// Serverni ishga tushirish
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server ${PORT} portda ishlayapti`));
