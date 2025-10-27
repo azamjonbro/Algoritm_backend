@@ -3,7 +3,7 @@ const upload = require('../middleware/upload');
 const {createVideoOpinion, getVideoOpinions, getVideoOpinionById, updateVideoOpinion, deleteVideoOpinion, getVideoOpinionByDirection, getVideoOpinionByTitle } = require('../controllers/video_opinion/videoOpinion');
 
 // form-data: fields (title, direction), file (video)
-router.post('/video-opinions', upload.fields([{ name: 'video', maxCount: 1 }, { name: 'thumbnail', maxCount: 1 }]), createVideoOpinion);
+router.post('/video-opinions', upload.fields([{ name: 'video', maxCount: 1 }, { name: 'poster', maxCount: 1 }]), createVideoOpinion);
 router.get('/video-opinions', getVideoOpinions);
 router.get('/video-opinions/:id', getVideoOpinionById);
 router.put('/video-opinions/:id', updateVideoOpinion);
