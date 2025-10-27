@@ -4,7 +4,6 @@ const videoOpinionModel = require('../../models/video_opinions/video.model');
 
 exports.createVideoOpinion = async (req, res) => {
   try {
-    // form-data: video, poster
     if (!req.files || !req.files.video || !req.files.poster) {
       return res.status(400).json({
         message: "video va poster fayllari majburiy (form-data: video, poster)",
@@ -23,7 +22,6 @@ exports.createVideoOpinion = async (req, res) => {
       likes,
     } = req.body;
 
-    // Fayl saqlanayotgan papka uchun public URL yo'li
     const videoRelativePath = path.posix.join("/uploadImages", videoFile.filename);
     const posterRelativePath = path.posix.join("/uploadImages", posterFile.filename);
 
@@ -51,7 +49,6 @@ exports.createVideoOpinion = async (req, res) => {
     });
   } catch (error) {
     console.error("Error creating video opinion:", error);
-    // MulterError bo'lsa, aniqroq qaytarish
     if (error && error.name === 'MulterError') {
       return res.status(400).json({ message: error.message || 'Fayl yuklash xatosi' });
     }
