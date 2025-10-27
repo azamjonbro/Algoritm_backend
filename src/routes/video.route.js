@@ -2,7 +2,6 @@ const router = require('express').Router();
 const upload = require('../middleware/upload');
 const {createVideoOpinion, getVideoOpinions, getVideoOpinionById, updateVideoOpinion, deleteVideoOpinion, getVideoOpinionByDirection, getVideoOpinionByTitle } = require('../controllers/video_opinion/videoOpinion');
 
-// form-data: fields (title, direction), file (video)
 router.post(
   '/video-opinions',
   upload.fields([
