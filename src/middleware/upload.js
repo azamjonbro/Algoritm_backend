@@ -28,7 +28,7 @@ const fileFilter = (req, file, cb) => {
     return cb(new Error('Video maydoni faqat video fayl qabul qiladi'));
   }
 
-  if (file.fieldname === 'thumbnail') {
+  if (file.fieldname === 'poster') {
     if (mime.startsWith('image/') || (mime === 'application/octet-stream' && imageExt.has(ext))) {
       return cb(null, true);
     }
